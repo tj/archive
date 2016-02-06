@@ -5,7 +5,6 @@ import (
 	"errors"
 	"io"
 	"os"
-	"time"
 )
 
 type zipArchive struct {
@@ -22,7 +21,6 @@ func (a *zipArchive) addBytes(path string, contents []byte) error {
 	h := &zip.FileHeader{
 		Name: path,
 	}
-	h.SetModTime(time.Now())
 	f, err := a.writer.CreateHeader(h)
 	if err != nil {
 		return err
